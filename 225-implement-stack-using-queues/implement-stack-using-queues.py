@@ -1,36 +1,28 @@
+#using only one queue
 from collections import deque
 class MyStack:
 
     def __init__(self):
-        self.q1 = deque()
-        self.q2 = deque()
+        self.q = deque()
 
     def push(self, x: int) -> None:
-        self.q1.append(x)
+        self.q.append(x)
 
     def pop(self) -> int:
-        for _ in range(len(self.q1) - 1):
-            self.q2.append(self.q1.popleft())
-        ans = self.q1.popleft()    
-        #swap q1 and q2
-        self.q1,self.q2 = self.q2,self.q1
-
+        for _ in range(len(self.q) - 1):
+            self.q.append(self.q.popleft())
+        ans = self.q.popleft()    
         return ans
 
-
     def top(self) -> int:
-        for _ in range(len(self.q1) - 1):
-            self.q2.append(self.q1.popleft())
-        front = self.q1.popleft()  
-        self.q2.append(front)
-
-        #swap q1 and q2
-        self.q1,self.q2 = self.q2,self.q1
-
+        for _ in range(len(self.q) - 1):
+            self.q.append(self.q.popleft())
+        front = self.q.popleft()  
+        self.q.append(front)
         return front
 
     def empty(self) -> bool:
-        return len(self.q1) == 0
+        return len(self.q) == 0
             
 
 
