@@ -1,13 +1,9 @@
 class Solution:
     def strStr(self, h: str, needle: str) -> int:
-        n,m = len(h),len(needle)
-        if m ==0:
-            return 0
-        for i in range(n-m+1):
-            j = 0
-            while j<m and h[i+j]==needle[j]:
-                j+=1
-            if j==m:
+        m, n = len(h), len(needle)
+        if n > m:
+            return -1
+        for i in range(m - n + 1):
+            if h[i : i + n] == needle:
                 return i
-        return -1            
-            
+        return -1
